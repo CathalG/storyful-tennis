@@ -43,6 +43,7 @@ describe("Tests", () => {
     });
   });
 
+  // Test basic win condition
   describe("Testing basic win condition (First to Four)", () => {
     test("Player One scores 4 times (Wins Game)", () => {
       startGame();
@@ -63,3 +64,15 @@ describe("Tests", () => {
     });
   });
 
+  // Test error logging if player attempts to score once game is finished
+  describe("Testing error ", () => {
+    test("Player One scores 5 times (One more than required to Win Game)", () => {
+      startGame();
+      playerOneScores();
+      playerOneScores();
+      playerOneScores();
+      playerOneScores();
+      playerOneScores();
+      expect(getScore()).toBe("Game is over.");
+    });
+  });
