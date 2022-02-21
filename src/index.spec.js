@@ -67,7 +67,6 @@ import {
   // Test Duece and Advantage functionality
   describe("Test Duece and Advantage ", () => {
 
-
     test("Player One scores 3 times and Player Two scores 3 times.", () => {
       startGame();
       pointScored("Player One");;
