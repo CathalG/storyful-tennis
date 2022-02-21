@@ -1,36 +1,37 @@
 
-let score;
-let gameComplete;
-let error;
+let game = { 
+  complete : false, 
+  error : '',
+  score:[],
+  reset: function () {
+      this.complete = false;
+      this.error = '';
+      this.score = [0,0];
+  }
+};
 
 //Start new game (reset score and win condition)
 export function  startGame() {
-    score = [0, 0];
-    gameComplete = false;
-    error = false;
+    game.reset();
 }
 
-  //Player one scores a point 
-  export function playerOneScores() {
+  //Player scores a point 
+  export function pointScored(playerName) {
     // If game is over set error message and break
-    if (gameComplete === true) {
-        error = "Game is over.";
+    if ( game.complete === true) {
+        game.error = "Game is over.";
         return;
     }
-    score[0]++;
-    getScore();
-  }
-  
-  //Player Two scores a point
-  export function playerTwoScores() {
-    // If game is over set error message and break
-    if (gameComplete === true) {
-        error = "Game is over.";
-        return;
+    if(playerName == 'Player One') {
+      game.score[0]++
     }
-    score[1]++;
+
+    else if(playerName == 'Player Two'){
+      game.score[1]++;
+    }
     getScore();
   }
+
 
   //return individual score as corresponding tennis score string
   export function getScoreAsString(score) {
@@ -52,23 +53,23 @@ export function  startGame() {
   export function getScore() {
 
     //if an error has been logged then return it
-    if (error) return error;
+    if (game.error) return game.error;
 
-    const playerOneScore = getScoreAsString(score[0]);
-    const playerTwoScore = getScoreAsString(score[1]);
+    const playerOneScore = getScoreAsString(game.score[0]);
+    const playerTwoScore = getScoreAsString(game.score[1]);
 
     // Player one has won
     if (playerOneScore === "Game") {
-        gameComplete = true;
+        game.complete = true;
         return "Game - Player One";
       }
     // Player two has won
     else if (playerTwoScore === "Game") {
-        gameComplete = true;
+        game.complete = true;
         return "Game - Player Two";
     }
     // game is in progress | return current score
     else{
-        return `${getScoreAsString(score[0])} - ${getScoreAsString(score[1])}`;
+        return `${getScoreAsString(game.score[0])} - ${getScoreAsString(game.score[1])}`;
     }
 }

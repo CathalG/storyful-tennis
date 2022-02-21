@@ -1,8 +1,7 @@
 import {
   startGame,
   getScore,
-  playerOneScores,
-  playerTwoScores
+  pointScored
   
 } from "./index";
 
@@ -17,28 +16,28 @@ describe("Tests", () => {
   // Initial score tests
   describe("Basic Scoring Tests", () => {
     
-    test("Player 1 scores point", () => {
+    test("Player One scores point", () => {
       startGame();
-      playerOneScores();
+      pointScored("Player One");
       expect(getScore()).toBe("15 - Love");
     });
 
-    test("Player 1 scores 3 points", () => {
+    test("Player One scores 3 points", () => {
       startGame();
-      playerOneScores();
-      playerOneScores();
-      playerOneScores();
+      pointScored("Player One");
+      pointScored("Player One");
+      pointScored("Player One");
       expect(getScore()).toBe("40 - Love");
     });
 
     test("(40-40 without Deuce) Scoring Test", () => {
       startGame();
-      playerTwoScores();
-      playerTwoScores();
-      playerTwoScores();
-      playerOneScores();
-      playerOneScores();
-      playerOneScores();
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player One");
+      pointScored("Player One");
+      pointScored("Player One");
       expect(getScore()).toBe("40 - 40");
     });
   });
@@ -47,19 +46,19 @@ describe("Tests", () => {
   describe("Testing basic win condition (First to Four)", () => {
     test("Player One scores 4 times (Wins Game)", () => {
       startGame();
-      playerOneScores();
-      playerOneScores();
-      playerOneScores();
-      playerOneScores();
+      pointScored("Player One");
+      pointScored("Player One");
+      pointScored("Player One");
+      pointScored("Player One");
       expect(getScore()).toBe("Game - Player One");
     });
 
     test("Player Two scores 4 times (Wins Game)", () => {
       startGame();
-      playerTwoScores();
-      playerTwoScores();
-      playerTwoScores();
-      playerTwoScores();
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
       expect(getScore()).toBe("Game - Player Two");
     });
   });
@@ -68,11 +67,11 @@ describe("Tests", () => {
   describe("Testing error ", () => {
     test("Player One scores 5 times (One more than required to Win Game)", () => {
       startGame();
-      playerOneScores();
-      playerOneScores();
-      playerOneScores();
-      playerOneScores();
-      playerOneScores();
+      pointScored("Player One");
+      pointScored("Player One");
+      pointScored("Player One");
+      pointScored("Player One");
+      pointScored("Player One");
       expect(getScore()).toBe("Game is over.");
     });
   });

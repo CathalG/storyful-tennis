@@ -10,26 +10,26 @@ describe("Tests", () => {
 }); // Initial score tests
 
 describe("Basic Scoring Tests", () => {
-  test("Player 1 scores point", () => {
+  test("Player One scores point", () => {
     (0, _index.startGame)();
-    (0, _index.playerOneScores)();
+    (0, _index.pointScored)("Player One");
     expect((0, _index.getScore)()).toBe("15 - Love");
   });
-  test("Player 1 scores 3 points", () => {
+  test("Player One scores 3 points", () => {
     (0, _index.startGame)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
     expect((0, _index.getScore)()).toBe("40 - Love");
   });
   test("(40-40 without Deuce) Scoring Test", () => {
     (0, _index.startGame)();
-    (0, _index.playerTwoScores)();
-    (0, _index.playerTwoScores)();
-    (0, _index.playerTwoScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
+    (0, _index.pointScored)("Player Two");
+    (0, _index.pointScored)("Player Two");
+    (0, _index.pointScored)("Player Two");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
     expect((0, _index.getScore)()).toBe("40 - 40");
   });
 }); // Test basic win condition
@@ -37,18 +37,18 @@ describe("Basic Scoring Tests", () => {
 describe("Testing basic win condition (First to Four)", () => {
   test("Player One scores 4 times (Wins Game)", () => {
     (0, _index.startGame)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
     expect((0, _index.getScore)()).toBe("Game - Player One");
   });
   test("Player Two scores 4 times (Wins Game)", () => {
     (0, _index.startGame)();
-    (0, _index.playerTwoScores)();
-    (0, _index.playerTwoScores)();
-    (0, _index.playerTwoScores)();
-    (0, _index.playerTwoScores)();
+    (0, _index.pointScored)("Player Two");
+    (0, _index.pointScored)("Player Two");
+    (0, _index.pointScored)("Player Two");
+    (0, _index.pointScored)("Player Two");
     expect((0, _index.getScore)()).toBe("Game - Player Two");
   });
 }); // Test error logging if player attempts to score once game is finished
@@ -56,11 +56,11 @@ describe("Testing basic win condition (First to Four)", () => {
 describe("Testing error ", () => {
   test("Player One scores 5 times (One more than required to Win Game)", () => {
     (0, _index.startGame)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
-    (0, _index.playerOneScores)();
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
+    (0, _index.pointScored)("Player One");
     expect((0, _index.getScore)()).toBe("Game is over.");
   });
 });
