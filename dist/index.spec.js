@@ -7,26 +7,22 @@ describe("Tests", () => {
   test("Jest is up and running", () => {
     expect(1).toBe(1);
   });
-}); // Initial score test
+}); // Initial score tests
 
-describe("Basic Scoring Test", () => {
+describe("Basic Scoring Tests", () => {
   test("Player 1 scores point", () => {
     (0, _index.startGame)();
     (0, _index.playerOneScores)();
     expect((0, _index.getScore)()).toBe("15 - Love");
   });
-});
-describe("Multiple Points Scoring Test", () => {
-  test("Player 1 scores point", () => {
+  test("Player 1 scores 3 points", () => {
     (0, _index.startGame)();
     (0, _index.playerOneScores)();
     (0, _index.playerOneScores)();
     (0, _index.playerOneScores)();
     expect((0, _index.getScore)()).toBe("40 - Love");
   });
-});
-describe("(40-40 without Deuce) Scoring Test", () => {
-  test("Player 1 scores point", () => {
+  test("(40-40 without Deuce) Scoring Test", () => {
     (0, _index.startGame)();
     (0, _index.playerTwoScores)();
     (0, _index.playerTwoScores)();
@@ -35,5 +31,23 @@ describe("(40-40 without Deuce) Scoring Test", () => {
     (0, _index.playerOneScores)();
     (0, _index.playerOneScores)();
     expect((0, _index.getScore)()).toBe("40 - 40");
+  });
+});
+describe("Testing basic win condition (First to Four)", () => {
+  test("Player One scores 4 times (Wins Game)", () => {
+    (0, _index.startGame)();
+    (0, _index.playerOneScores)();
+    (0, _index.playerOneScores)();
+    (0, _index.playerOneScores)();
+    (0, _index.playerOneScores)();
+    expect((0, _index.getScore)()).toBe("Game - Player One");
+  });
+  test("Player Two scores 4 times (Wins Game)", () => {
+    (0, _index.startGame)();
+    (0, _index.playerTwoScores)();
+    (0, _index.playerTwoScores)();
+    (0, _index.playerTwoScores)();
+    (0, _index.playerTwoScores)();
+    expect((0, _index.getScore)()).toBe("Game - Player Two");
   });
 });

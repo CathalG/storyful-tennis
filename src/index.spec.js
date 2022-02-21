@@ -14,27 +14,24 @@ describe("Tests", () => {
   });
 
 
-  // Initial score test
-  describe("Basic Scoring Test", () => {
+  // Initial score tests
+  describe("Basic Scoring Tests", () => {
+    
     test("Player 1 scores point", () => {
       startGame();
       playerOneScores();
       expect(getScore()).toBe("15 - Love");
     });
-  });
 
-  describe("Multiple Points Scoring Test", () => {
-    test("Player 1 scores point", () => {
+    test("Player 1 scores 3 points", () => {
       startGame();
       playerOneScores();
       playerOneScores();
       playerOneScores();
       expect(getScore()).toBe("40 - Love");
     });
-  });
 
-  describe("(40-40 without Deuce) Scoring Test", () => {
-    test("Player 1 scores point", () => {
+    test("(40-40 without Deuce) Scoring Test", () => {
       startGame();
       playerTwoScores();
       playerTwoScores();
@@ -43,6 +40,26 @@ describe("Tests", () => {
       playerOneScores();
       playerOneScores();
       expect(getScore()).toBe("40 - 40");
+    });
+  });
+
+  describe("Testing basic win condition (First to Four)", () => {
+    test("Player One scores 4 times (Wins Game)", () => {
+      startGame();
+      playerOneScores();
+      playerOneScores();
+      playerOneScores();
+      playerOneScores();
+      expect(getScore()).toBe("Game - Player One");
+    });
+
+    test("Player Two scores 4 times (Wins Game)", () => {
+      startGame();
+      playerTwoScores();
+      playerTwoScores();
+      playerTwoScores();
+      playerTwoScores();
+      expect(getScore()).toBe("Game - Player Two");
     });
   });
 

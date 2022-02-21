@@ -22,7 +22,7 @@ function playerOneScores() {
 
 function playerTwoScores() {
   score[1]++;
-} //return individual score as corresponding tennis score 
+} //return individual score as corresponding tennis score string
 
 
 function getScoreAsString(score) {
@@ -38,10 +38,24 @@ function getScoreAsString(score) {
 
     case 3:
       return "40";
+
+    case 4:
+      return "Game";
   }
-} //return current score as tennis score
+} //return current score as tennis score string
 
 
 function getScore() {
-  return `${getScoreAsString(score[0])} - ${getScoreAsString(score[1])}`;
+  const playerOneScore = getScoreAsString(score[0]);
+  const playerTwoScore = getScoreAsString(score[1]); // Player one has won
+
+  if (playerOneScore === "Game") {
+    return "Game - Player One";
+  } // Player two has won
+  else if (playerTwoScore === "Game") {
+    return "Game - Player Two";
+  } // game is in progress | return current score
+  else {
+    return `${getScoreAsString(score[0])} - ${getScoreAsString(score[1])}`;
+  }
 }
