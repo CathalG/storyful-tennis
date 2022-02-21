@@ -2,16 +2,14 @@ import {
   startGame,
   getScore,
   pointScored
-  
 } from "./index";
 
 // Test Jest is up and running
-describe("Tests", () => {
+  describe("Jest test", () => {
     test("Jest is up and running", () => {
       expect(1).toBe(1);
     });
   });
-
 
   // Initial score tests
   describe("Basic Scoring Tests", () => {
@@ -19,7 +17,7 @@ describe("Tests", () => {
     test("Player One scores point", () => {
       startGame();
       pointScored("Player One");
-      expect(getScore()).toBe("15 - Love");
+      expect(getScore()).toBe("Fifteen - Love");
     });
 
     test("Player One scores 3 points", () => {
@@ -27,18 +25,7 @@ describe("Tests", () => {
       pointScored("Player One");
       pointScored("Player One");
       pointScored("Player One");
-      expect(getScore()).toBe("40 - Love");
-    });
-
-    test("(40-40 without Deuce) Scoring Test", () => {
-      startGame();
-      pointScored("Player Two");
-      pointScored("Player Two");
-      pointScored("Player Two");
-      pointScored("Player One");
-      pointScored("Player One");
-      pointScored("Player One");
-      expect(getScore()).toBe("40 - 40");
+      expect(getScore()).toBe("Forty - Love");
     });
   });
 
@@ -72,6 +59,62 @@ describe("Tests", () => {
       pointScored("Player One");
       pointScored("Player One");
       pointScored("Player One");
+      expect(getScore()).toBe("Game is over.");
+    });
+  });
+
+
+  // Test Duece and Advantage functionality
+  describe("Test Duece and Advantage ", () => {
+
+
+    test("Player One scores 3 times and Player Two scores 3 times.", () => {
+      startGame();
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      expect(getScore()).toBe("Deuce");
+    });
+
+    test("Player One scores 3 times and Player Two scores 4 times.", () => {
+      startGame();
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      expect(getScore()).toBe("Advantage - Player Two");
+    });
+
+    test("Player One scores 3 times and Player Two scores 5 times.", () => {
+      startGame();
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      expect(getScore()).toBe("Game - Player Two");
+    });
+
+    test("Player One scores 3 times and Player Two scores 6 times.", () => {
+      startGame();
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player One");;
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
+      pointScored("Player Two");
       expect(getScore()).toBe("Game is over.");
     });
   });
