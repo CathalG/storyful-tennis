@@ -1,0 +1,28 @@
+{
+  "name": "storyful-tennis",
+  "version": "1.0.0",
+  "description": "Code Challenge For Storyful",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "npm run transpile && jest ./dist/index.spec.js",
+    "transpile": "babel src --out-dir dist",
+    "start": "node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CathalG/storyful-tennis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CathalG/storyful-tennis/issues"
+  },
+  "homepage": "https://github.com/CathalG/storyful-tennis#readme"
+}
